@@ -2,7 +2,7 @@ import { google } from "googleapis";
 import fs from "fs";
 
 // Load credentials from JSON file
-const credentials = JSON.parse(fs.readFileSync("credentials.json", "utf-8"));
+const credentials = JSON.parse(process.env.CREDENTIALS_JSON);
 
 async function testAuth() {
   try {
