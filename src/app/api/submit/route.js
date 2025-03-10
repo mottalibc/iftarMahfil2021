@@ -2,17 +2,7 @@ import { google } from "googleapis";
 import fs from "fs";
 
 // Load credentials
-const credentialsString = Buffer.from(
-  process.env.GOOGLE_CREDENTIALS,
-  "base64"
-).toString("utf-8");
-const credentials = JSON.parse(credentialsString);
-
-if (!credentials) {
-  throw new Error("CREDENTIALS_JSON is missing in environment variables");
-}
-
-const parsedCredentials = JSON.parse(credentials);
+const credentials = JSON.parse(fs.readFileSync("credentials.json", "utf-8"));
 
 const auth = new google.auth.GoogleAuth({
   credentials,
