@@ -2,7 +2,13 @@ import { google } from "googleapis";
 import fs from "fs";
 
 // Load credentials
-const credentials = JSON.parse(process.env.CREDENTIALS_JSON);
+const credentials = process.env.CREDENTIALS_JSON;
+
+if (!credentials) {
+  throw new Error("CREDENTIALS_JSON is missing in environment variables");
+}
+
+const parsedCredentials = JSON.parse(credentials);
 
 const auth = new google.auth.GoogleAuth({
   credentials,
